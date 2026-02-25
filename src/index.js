@@ -48,30 +48,31 @@ class GnomeGame {
 
     const randomIndex = Math.floor(Math.random() * this.cells.length);
     const cell = this.cells[randomIndex];
-
     cell.append(gnome);
-
     cell.classList.add('has-gnome');
     this.currentGnomeCell = cell;
-
   }
 
   moveGnome() {
-  if (!this.currentGnomeCell) return;
-  const currentIndex = parseInt(this.currentGnomeCell.dataset.index);
-  let newIndex;
-  do {
-    newIndex = Math.floor(Math.random() * this.cells.length);
-  } while (newIndex === currentIndex);
-  const newCell = this.cells[newIndex];
-  const gnome = this.currentGnomeCell.querySelector('img');
-  if (gnome) {
-    newCell.append(gnome);
-    this.currentGnomeCell.classList.remove('has-gnome');
-    newCell.classList.add('has-gnome');
-    this.currentGnomeCell = newCell;
+    if (!this.currentGnomeCell) return;
+
+    const currentIndex = parseInt(this.currentGnomeCell.dataset.index);
+    let newIndex;
+
+    do {
+      newIndex = Math.floor(Math.random() * this.cells.length);
+    } while (newIndex === currentIndex);
+
+    const newCell = this.cells[newIndex];
+    const gnome = this.currentGnomeCell.querySelector('img');
+
+    if (gnome) {
+      newCell.append(gnome);
+      this.currentGnomeCell.classList.remove('has-gnome');
+      newCell.classList.add('has-gnome');
+      this.currentGnomeCell = newCell;
+    }
   }
-}
 
   startMoving() {
     if (this.interval) {
