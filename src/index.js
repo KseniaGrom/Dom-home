@@ -5,7 +5,7 @@ class GnomeGame {
   constructor(boardSize = 4) {
     this.boardSize = boardSize;
     this.cells = [];
-    currentGnomeCell: null;
+    this.currentGnomeCell = null;
     this.score = 0;
     this.interval = null;
     this.boardElement = document.getElementById('game-board');
@@ -36,9 +36,9 @@ class GnomeGame {
   }
 
   createGnome() {
-    if (currentGnomeCell) {
-      currentGnomeCell.innerHTML = '';
-      currentGnomeCell.classList.remove('has-gnome');
+    if (this.currentGnomeCell) {
+      this.currentGnomeCell.innerHTML = '';
+      this.currentGnomeCell.classList.remove('has-gnome');
     }
 
     const gnome = document.createElement('img');
@@ -50,13 +50,13 @@ class GnomeGame {
     const cell = this.cells[randomIndex];
     cell.appendChild(gnome);
     cell.classList.add('has-gnome');
-    currentGnomeCell = cell;
+    this.currentGnomeCell = cell;
   }
 
   moveGnome() {
-    if (!currentGnomeCell) return;
+    if (!this.currentGnomeCell) return;
 
-    const currentIndex = parseInt(currentGnomeCell.dataset.index);
+    const currentIndex = parseInt(this.currentGnomeCell.dataset.index);
     let newIndex;
 
     do {
@@ -64,15 +64,13 @@ class GnomeGame {
     } while (newIndex === currentIndex);
 
     const newCell = this.cells[newIndex];
-    const gnome = currentGnomeCell.querySelector('img');
+    const gnome = this.currentGnomeCell.querySelector('img');
 
     if (gnome) {
-
       newCell.appendChild(gnome);
-      
-      currentGnomeCell.classList.remove('has-gnome');
+      this.currentGnomeCell.classList.remove('has-gnome');
       newCell.classList.add('has-gnome');
-      currentGnomeCell = newCell;
+      this.currentGnomeCell = newCell;
     }
   }
 
@@ -80,20 +78,20 @@ class GnomeGame {
     if (this.interval) {
       clearInterval(this.interval);
     }
-    
+
     this.interval = setInterval(() => {
       this.moveGnome();
     }, 1000);
   }
 
-  handleCellClick = (event) => {
+  handleCellClick(event) {
     const cell = event.target.closest('.cell');
     if (!cell) return;
 
     if (cell.classList.contains('has-gnome')) {
-      this.score++;
+      this.score += 1;
       this.scoreElement.textContent = this.score;
-      
+
       cell.style.backgroundColor = '#FFD700';
       setTimeout(() => {
         cell.style.backgroundColor = '';
@@ -101,15 +99,15 @@ class GnomeGame {
     }
   }
 
-  resetGame = () => {
+  resetGame() {
     this.score = 0;
     this.scoreElement.textContent = this.score;
     this.createGnome();
   }
 
   attachEvents() {
-    this.boardElement.addEventListener('click', this.handleCellClick);
-    this.resetButton.addEventListener('click', this.resetGame);
+    this.boardElement.addEventListener('click', (event) => this.handleCellClick(event));
+    this.resetButton.addEventListener('click', () => this.resetGame());
   }
 
   destroy() {
@@ -122,5 +120,6 @@ class GnomeGame {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  new GnomeGame();
+  const game = new GnomeGame();
+  console.log('Game initialized', game);
 });

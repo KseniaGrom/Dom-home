@@ -12,6 +12,19 @@
   },
   "rules": {
     "no-plusplus": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "no-new": "off",
+    "class-methods-use-this": "off",
+    "no-param-reassign": "off",
+    "no-undef": "error",
+    "no-unused-expressions": "error",
+    "no-restricted-syntax": "off",
+    "no-labels": "off",
+    "no-unused-labels": "error",
+    "padded-blocks": ["error", "never"],
+    "no-trailing-spaces": "error",
+    "semi": ["error", "always"],
+    "eol-last": ["error", "always"],
+    "radix": ["error", "as-needed"]
   }
 }
