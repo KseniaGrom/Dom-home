@@ -48,9 +48,12 @@ class GnomeGame {
 
     const randomIndex = Math.floor(Math.random() * this.cells.length);
     const cell = this.cells[randomIndex];
-    cell.appendChild(gnome);
+
+    cell.append(gnome);
+
     cell.classList.add('has-gnome');
     this.currentGnomeCell = cell;
+
   }
 
   moveGnome() {
@@ -121,5 +124,4 @@ class GnomeGame {
 
 document.addEventListener('DOMContentLoaded', () => {
   const game = new GnomeGame();
-  console.log('Game initialized', game);
 });
