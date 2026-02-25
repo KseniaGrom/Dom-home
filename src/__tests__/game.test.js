@@ -4,7 +4,6 @@ describe('Basic test', () => {
   });
 });
 
-
 describe('GnomeGame', () => {
   beforeEach(() => {
     document.body.innerHTML = `
