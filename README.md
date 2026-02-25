@@ -1,6 +1,6 @@
 # Gnome Game
 
-![CI](https://github.com/KseniaGrom/Dom-home/actions/workflows/deploy.yml/badge.svg)
+[![CI](https://github.com/KseniaGrom/Dom-home/actions/workflows/deploy.yml/badge.svg)](https://github.com/KseniaGrom/Dom-home/actions/workflows/deploy.yml)
 
 Игра, где гном перемещается по игровому полю 4x4. Нужно успеть кликнуть на него, чтобы заработать очки.
 
